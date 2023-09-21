@@ -1,6 +1,7 @@
 import "./App.css";
 
 function App() {
+  
   const sizes = [
     {
       value: "S",
@@ -19,18 +20,23 @@ function App() {
       label: "XL",
     },
   ];
-  const optionHandler = (e) => {
-    console.log(e.target.value);
+  const handleAdd = (e) => {
+    e.preventDefault();
+    console.log(e.target.quantity.value);
+    console.log(e.target.option.value);
   };
   return (
     <>
-      <div className="p-2">
-        <form className=" container bg-blue-500 mx-auto  flex justify-center items-start my-20 lg:w-10/12 rounded-lg">
+      <div className="p-2 container lg:w-10/12 mx-auto">
+        <form
+          onSubmit={handleAdd}
+          className=" md:w-4/5 lg:w-3/5 mx-auto  border-2 border-black   flex flex-col justify-center  my-20  rounded-lg"
+        >
           <div className="flex flex-col gap-4 m-10">
             <div className="sm:flex justify-between gap-4">
               <label className="font-semibold text-xl">PRODUCT-ID:</label>
               <input
-                className="rounded-md text-xl"
+                className="bg-gray-200 rounded-md text-xl"
                 type="text"
                 name="product-id"
               />
@@ -38,17 +44,17 @@ function App() {
             <div className="md:flex justify-between gap-4">
               <label className="font-semibold text-xl">PRODUCT-NAME:</label>
               <input
-                className="rounded-md text-xl"
+                className=" rounded-md text-xl bg-gray-200"
                 type="text"
                 name=""
                 id="product-name"
               />
             </div>
-            <div className="bg-red-500 rounded-lg m-6 p-4 space-y-4">
+            <div className="border-2 border-black rounded-lg m-6 p-4 space-y-4">
               <div className="md:flex justify-between gap-4">
                 <label className="pr-2 font-semibold text-xl">VARITION:</label>
                 <input
-                  className="rounded-md text-xl"
+                  className="bg-gray-200 rounded-md text-xl"
                   type="text"
                   name=""
                   id="product-name"
@@ -57,13 +63,12 @@ function App() {
               <div className="md:flex justify-between gap-4 ">
                 <label className="pr-2 font-semibold text-xl">SIZE:</label>
                 <select
-                  className="rounded-md px-2 text-xl"
-                  onChange={optionHandler}
+                  className="bg-gray-200 rounded-md px-2 text-xl"
                   name=""
                   id=""
                 >
                   {sizes.map((size, idx) => (
-                    <option key={idx} value="">
+                    <option key={idx} value={size.value} name="option">
                       {size.label}
                     </option>
                   ))}
@@ -73,16 +78,16 @@ function App() {
               <div className="md:flex justify-between gap-4">
                 <label className=" pr-2 font-semibold text-xl">QUANTITY:</label>
                 <input
-                  className="rounded-md text-xl"
+                  className="bg-gray-200 rounded-md text-xl"
                   type="text"
-                  name=""
+                  name="quantity"
                   id="product-name"
                 />
               </div>
               <div className="md:flex justify-between gap-4">
                 <label className="pr-2 font-semibold text-xl">PRICE:</label>
                 <input
-                  className="rounded-md text-xl"
+                  className="bg-gray-200 rounded-md text-xl"
                   type="text"
                   name=""
                   id="product-name"
@@ -90,6 +95,12 @@ function App() {
               </div>
             </div>
           </div>
+          <button
+            className="m-10 p-1 border-2 rounded-lg bg-green-400 hover:bg-green-300 text-white font-bold text-xl"
+            type="submit"
+          >
+            ADD
+          </button>
         </form>
       </div>
     </>
